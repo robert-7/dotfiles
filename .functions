@@ -169,3 +169,94 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# functions for tmux
+function twoh() {
+  tmux new -s tmp_two_`datename` \; split-window -h \; attach
+}
+
+function twov() {
+  tmux new -s tmp_two_`datename` \; split-window -v \; attach
+}
+
+function tworeplay() {
+  # send-keys 'tail -f /var/log/monitor.log' C-m \; \
+  tmux new -s tmp_two_replay`datename` \; split-window -v \; attach
+}
+
+function four() {
+  tmux new -s tmp_four_`datename` \; split-window -h \; split-window -v \; select-pane -t 0 \; split-window -v \; attach
+}
+
+function fit() {
+  grep -oE "^.{0,`tput cols`}" --color=none
+}
+
+function grr() {
+  if [ $# -ne 0 ]; then
+    if [ $# -eq 1 ]; then
+      gr -r $1 .
+    else
+      echo "ERROR: Too many arguments given. Only 1 allowed."
+    fi
+  else
+    echo "ERROR: Please supply an argument."
+  fi
+}
+
+function grepdot() {
+  if [ $# -ne 0 ]; then
+      grep -d skip $@ ~/.* --exclude=/root/.bash_history -n
+  else
+    echo "ERROR: Please supply an argument."
+  fi
+}
+
+function grepgit() {
+  if [ $# -ne 0 ]; then
+    grep -rnI --exclude-dir=.git "$@"
+  else
+    echo "ERROR: Please supply an argument."
+  fi
+}
+
+function ssh-check() {
+  if [ $# -ne 0 ]; then
+    ssh $RSERVER "cat /etc/motd | grep -q 'Robert Lech' && echo 'Yes. It is yours.' || echo 'NOOO. Not Yours.'"
+  else
+    echo "ERROR: Please supply an argument."
+  fi
+}
+
+function gitwho {
+  git log -p $1 | grep -E "Author|Date" | head -n 30 | sed -e "s/^Author: *\(.*\) <.*/\1/g" -e "s/^Date: *\(.*\) -.*/\1/g" | sed '$!N;s/\n/\t/'
+}
+
+function locatepwd {
+  if [ $# -ne 0 ]; then
+    if [ $# -eq 1 ]; then
+      locate $1 | grep `pwd`
+    else
+      echo "ERROR: Too many arguments given. Only 1 allowed."
+    fi
+  else
+    echo "ERROR: Please supply an argument."
+  fi
+}
+
+function sshand() {
+  for i in $@; do echo -n "$i - "; dig +short $i; done
+}
+
+#function latest_charts() {
+#  if [ $# -gt 1 ]; then
+#    if [[ $1 -eq "incubator" || $1 -eq "stable" ]]; then
+#      curl -s http://kubernetes-charts.indexexchange.com/api/$1/charts | jq -r ."$2"
+#      curl -s http://kubernetes-charts.indexexchange.com/api/$1/charts | jq -r '."$2"[]."version"' | sort -r | head -n 3
+#    else
+#      echo "ERROR: the first argument needs to be either incubator or stable"
+#    fi
+#  else
+#    echo "ERROR: format is: 'latest_charts incubator|stable <chart name>' where the charts can be retrieved by running 'curl -s http://kubernetes-charts.indexexchange.com/api/[incubator|stable]/charts | jq keys'"
+#  fi
+#}

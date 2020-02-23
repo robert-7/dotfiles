@@ -1,0 +1,5 @@
+#Ansible: remove dangling images sunday
+0 12 * * 1 /opt/rm-dangling-images.sh
+
+# tmpwatch, remove files in /tmp after 2 weeks (12*24=336)
+0 4 * * * /usr/sbin/tmpwatch -am 336 /tmp

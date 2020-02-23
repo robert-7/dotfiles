@@ -1,6 +1,6 @@
 " Use the Solarized Dark theme
 set background=dark
-colorscheme solarized
+colorscheme molokai
 let g:solarized_termtrans=1
 
 " Make Vim more useful
@@ -59,8 +59,8 @@ set ignorecase
 set incsearch
 " Always show status line
 set laststatus=2
-" Enable mouse in all modes
-set mouse=a
+" Enable mouse in all modes - disabling since it breaks copy-and-paste with mouse in normal mode
+" set mouse=a
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.

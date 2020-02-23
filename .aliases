@@ -8,6 +8,14 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
+# history shortcut
+alias hl="history | less +G"
+alias ht="history | tail"
+alias hg="history | grep"
+
+# date shortcuts
+alias datename="date +\"%Y%m%d_%H%M%S\""
+
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
@@ -47,6 +55,9 @@ alias sudo='sudo '
 
 # Get week number
 alias week='date +%V'
+
+# get timezone
+alias timezone='timedatectl | grep "Time zone" | cut -d ":" -f 2 | sed -e "s/ *$//g" -e "s/^ *//g"'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
@@ -149,3 +160,28 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# ix-provided aliases
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias gr='grep -I --color=auto 2>/dev/null'
+
+# personal commands
+alias sa='eval $(ssh-agent) && ssh-add'
+
+
+#·docker aliases
+alias ars="docker exec -it as-regression-suite bash"
+
+# update dots
+alias al="~/.aliases"
+alias val="vim ~/.aliases"
+alias sal="source ~/.aliases"
+alias cpal="/bin/cp ~/.aliases /src/github.com/robert-7/dotfiles.git/"
+alias cpdots="/bin/cp ~/{.aliases,.bash_profile,.bash_prompt,.bashrc,.exports,.functions,.inputrc,.tmux.conf,.vimrc} /src/github.com/robert-7/dotfiles.git/"
+
+alias updatedots="/bin/cp ~/.{aliases,functions,bash_profile} /src/github.com/robert-7/dotfiles.git/.; gitdot;git status"
+
+# docker
+alias dockerf="docker ps -a --format \"table {{.Names}}\t{{.ID}}\t{{.Mounts}}\t{{.Status}}\""

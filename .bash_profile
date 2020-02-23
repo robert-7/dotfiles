@@ -46,3 +46,26 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+export PERL5LIB=/root/Projects/Proj1/src/gitlab.indexexchange.com/platform-dev/APP/lib:$PERL5LIB
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/root/perl5";
+export PERL_MB_OPT="--install_base /root/perl5";
+export PERL_MM_OPT="INSTALL_BASE=/root/perl5";
+export PERL5LIB="/root/perl5/lib/perl5:$PERL5LIB";
+export PATH="/root/perl5/bin:$PATH";
+
+export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# fuck
+# eval $(thefuck --alias fuck)
+
+# go path
+export GOPATH="/root/Projects/Proj1"
+
