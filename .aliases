@@ -170,6 +170,31 @@ alias gr='grep -I --color=auto 2>/dev/null'
 # personal commands
 alias sa='eval $(ssh-agent) && ssh-add'
 
+# personal aliases
+alias  gitix="cd /src/gitlab.indexexchange.com"
+alias gitind="cd /src/gitlab.indexexchange.com"
+alias gitads="cd /src/gitlab.indexexchange.com/adserving"
+alias gitsda="cd /src/gitlab.indexexchange.com/app/supply-data-api.git"
+alias gitops="cd /src/gitlab.indexexchange.com/operations"
+alias gitans="cd /src/gitlab.indexexchange.com/operations/ansible.git"
+alias gitinv="cd /src/gitlab.indexexchange.com/operations/inventory.git"
+alias gitorc="cd /src/gitlab.indexexchange.com/orchestration"
+alias gitsup="cd /src/gitlab.indexexchange.com/supply"
+alias gitdot="cd /src/github.com/robert-7/dotfiles.git"
+alias gitvip="cd /install/viper-2.0-git"
+alias gitapp="cd /install/viper-2.0-git/APP"
+alias gitapm="cd /install/viper-2.0-git/APPMISC"
+alias gitapr="cd /install/viper-2.0-git/APPRULES"
+alias gitaps="cd /install/viper-2.0-git/APPSTATS"
+alias  gitas="cd /install/viper-2.0-git/AS"
+alias gitm2p="cd /install/viper-2.0-git/M2P"
+alias gitfly="cd /src/gitlab.indexexchange.com/demand/flyway-viper-2.git"
+alias gitreptest="cd /install/platform-test/AS/replays"
+alias gitreptool="cd /install/platform-tools/replays"
+alias gitreptools="cd /install/platform-tools/replays"
+alias gitreplint="cd /install/platform-tools/replays/replay-linter"
+alias gitrepaut="cd /install/platform-tools/replay-automation"
+alias   goas="cd /root/Projects/Proj1/src/gitlab.indexexchange.com/platform-dev/AS"
 
 #·docker aliases
 alias ars="docker exec -it as-regression-suite bash"

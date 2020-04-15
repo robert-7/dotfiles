@@ -59,12 +59,9 @@ function fs() {
 }
 
 # Use Git’s colored diff when available
-hash git &>/dev/null;
-if [ $? -eq 0 ]; then
-	function diff() {
-		git diff --no-index --color-words "$@";
-	}
-fi;
+function gdiff() {
+	git diff --no-index --color-words "$@";
+}
 
 # Create a data URL from a file
 function dataurl() {
@@ -187,9 +184,56 @@ function tworeplay() {
 function four() {
   tmux new -s tmp_four_`datename` \; split-window -h \; split-window -v \; select-pane -t 0 \; split-window -v \; attach
 }
+function ktdev() {
+  brokers_param="-brokers 10.5.70.111,10.5.70.112,10.5.70.113,10.5.70.114"
+
+  # check if a command provided
+  if [ $# -ne 0 ]; then
+
+    # check for valid command
+    if [[ "$1" == "consume" || "$1" == "produce" || "$1" == "topic" || "$1" == "group" || "$1" == "admin" ]]; then
+      local cmd="$1"
+      shift
+      local args="$*"
+      kt $cmd $brokers_param $args
+
+    # error otherwise
+    elif [[ "$1" == "topics" ]]; then
+      ktdev topic | jq .name | tr -d '"' | sort
+    else
+      echo ERROR: first argument should be one of: consume, produce, topic, group, admin
+      echo Received: $1
+      echo run \`kt -help\` for more information
+    fi
+
+  else
+    echo "ERROR: Please supply a kt command."
+    echo run \`kt -help\` for more information
+  fi
+}
 
 function fit() {
   grep -oE "^.{0,`tput cols`}" --color=none
+}
+
+function who_replay() {
+  if [ $# -ne 0 ]; then
+    if [ $# -eq 1 ]; then
+      for replay in $replays; do
+        print_val=`ssh $replay "grep -i $1 /etc/motd | sed 's/Who: //g'"`
+        if [ "$print_val" ]; then
+          echo "$replay - $print_val"
+        fi
+        print_val=""
+      done
+    else
+      echo "ERROR: Too many arguments given. Only 1 allowed."
+      echo "Usage: who_replay name"
+    fi
+  else
+    echo "ERROR: Please supply an argument."
+    echo "Usage: who_replay name"
+  fi
 }
 
 function grr() {
