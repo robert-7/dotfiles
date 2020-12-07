@@ -264,14 +264,6 @@ function grepgit() {
   fi
 }
 
-function ssh-check() {
-  if [ $# -ne 0 ]; then
-    ssh $RSERVER "cat /etc/motd | grep -q 'Robert Lech' && echo 'Yes. It is yours.' || echo 'NOOO. Not Yours.'"
-  else
-    echo "ERROR: Please supply an argument."
-  fi
-}
-
 function gitwho {
   git log -p $1 | grep -E "Author|Date" | head -n 30 | sed -e "s/^Author: *\(.*\) <.*/\1/g" -e "s/^Date: *\(.*\) -.*/\1/g" | sed '$!N;s/\n/\t/'
 }
