@@ -54,18 +54,24 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
-export PERL5LIB=/root/Projects/Proj1/src/gitlab.indexexchange.com/platform-dev/APP/lib:$PERL5LIB
-export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/root/perl5";
-export PERL_MB_OPT="--install_base /root/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/root/perl5";
-export PERL5LIB="/root/perl5/lib/perl5:$PERL5LIB";
-export PATH="/root/perl5/bin:$PATH";
+# Golang Vars path
+export GOPATH="/root/go"
+export GOPRIVATE="*.indexexchange.com"
+export GOPROXY="http://nexus3.indexexchange.com/repository/go-mod-group,https://proxy.golang.org,direct"
+export GOSUMDB="off"
+export GO111MODULE="auto"
+export PATH="/usr/local/go/bin:${GOPATH}/bin:$PATH"
+
+# Perl variables
+export PERL5LIB="${GOPATH}/src/gitlab.indexexchange.com/platform-dev/APP/lib:$PERL5LIB"
+export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/root/perl5"
+export PERL_MB_OPT="--install_base /root/perl5"
+export PERL_MM_OPT="INSTALL_BASE=/root/perl5"
+export PERL5LIB="/root/perl5/lib/perl5:$PERL5LIB"
+export PATH="/root/perl5/bin:$PATH"
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
 # fuck
 # eval $(thefuck --alias fuck)
-
-# go path
-export GOPATH="/root/Projects/Proj1"
 
